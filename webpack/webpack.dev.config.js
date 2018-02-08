@@ -24,7 +24,8 @@ module.exports = {
                 limit: 10000
               }
             }
-        ]
+        ],
+        noParse: /node_modules\/json-schema\/lib\/validate\.js/ //added in response to a json-schema runtime bug: "define cannot be used indirect"
     },
     output: {
         path: parentDir + '/dist',
@@ -33,5 +34,10 @@ module.exports = {
     devServer: {
         contentBase: parentDir,
         historyApiFallback: true
+    },
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     }
 }
