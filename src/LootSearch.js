@@ -31,7 +31,7 @@ export default class LootSearch extends Component {
         );
     }
     
-    getSuggestionValue(suggestion) { 
+    getSuggestionValue(suggestion) {
         return suggestion;
     }
     
@@ -39,6 +39,10 @@ export default class LootSearch extends Component {
         this.setState({
             currentValue: newValue
         });
+    }
+    
+    onSuggestionSelected = (suggestion, suggestionValue) => { //Inform app that a selection has been made
+        this.props.selectionCallback(suggestionValue.suggestionValue);
     }
     
     render () {
@@ -60,6 +64,7 @@ export default class LootSearch extends Component {
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={this.getSuggestionValue}
+                onSuggestionSelected={this.onSuggestionSelected}
                 renderSuggestion={renderSuggestion}
                 inputProps={inputProps}
             />               
