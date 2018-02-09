@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import * as Utils from './utils';
+import LootSearch from './LootSearch';
 
 export default class App extends Component {
     constructor(props) {
@@ -8,13 +9,23 @@ export default class App extends Component {
         this.state = {data: {}};
     }
     
-    componentWillMount() {
+    componentDidMount() {
         Utils.getInitialData().then((data) => {
             this.setState({data: data});
         });
     }
     
     render () {
-        return <p>{JSON.stringify(this.state.data)}</p>
+        let data = <p>{JSON.stringify(this.state.data)}</p>;
+
+        let searchInput = this.state.data.itemNames ?
+            <LootSearch names={this.state.data.itemNames} /> :
+            null;
+
+        return <div>
+            <h2>Warframe Loot Lookup</h2>
+            {searchInput}
+        </div>;
     }
 }
+
