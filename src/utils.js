@@ -56,6 +56,7 @@ function missionRewards(table, data) {
             else{
                 data.itemNames.push(entry[0]);
                 data.items[entry[0]] = newItemProperties();
+                data.items[entry[0]].missionRewards.push({mission: mission, rotation: rotation, rarity: entry[1]});
             }
         }
     });
